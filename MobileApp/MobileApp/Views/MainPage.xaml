@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileApp"
+             x:Class="MobileApp.MainPage"
+             Title="Главное меню"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Uid="MenuIt3" Name = "MenuIt3" Order = "Primary" Icon = "upload.png" Text = "Отправить" Priority = "0" Clicked="Upload"/>
+        <ToolbarItem x:Name = "MenuItem1" Order = "Primary" Icon = "Refresh.png" Text = "Обновить" Priority = "0" Clicked="RefreshLv"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="listView" HasUnevenRows="True" IsPullToRefreshEnabled ="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="CenterAndExpand">
+                                    <Label TextColor="#000000" Text="Объект:"  FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="16" Margin="10,5,0,0"/>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" Grid.Row="0" VerticalOptions="CenterAndExpand">
+                                    <Label TextColor="#000000" Text="{Binding ComplexObject.Value}" FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="16" Margin="0,5,10,0"/>
+                                </StackLayout>
+                                <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="CenterAndExpand">
+                                    <Label TextColor="#000000" Text="Задача:" VerticalTextAlignment="Center" FontSize="14" Margin="10,5,10,0"/>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" Grid.Row="1" VerticalOptions="CenterAndExpand">
+                                    <Label TextColor="#000000" Text="{Binding Description}" VerticalTextAlignment="Center" FontSize="14" Margin="0,5,10,0"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    

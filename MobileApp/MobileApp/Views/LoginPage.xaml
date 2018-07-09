@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="MobileApp.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+            <BoxView HeightRequest="10"/>
+            <Image HorizontalOptions="Center" WidthRequest="300" Source="logo.png"/>
+            <Frame BackgroundColor="#FFC975" HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="Email" Placeholder="Почта"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="White"/>
+                    <Entry x:Name="Password" Placeholder="Пароль"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="White"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Orientation="Vertical" Spacing="10">
+                <Button Text="Войти" TextColor="White"  
+                    FontAttributes="Bold" FontSize="16" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="#F87516" Clicked="Button_ClickedAsync" />
+                <Button Text="Оффлайн" TextColor="White"  
+                    FontAttributes="Bold" FontSize="16" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="#F87516" Clicked="Button_Clicked2Async" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>  
