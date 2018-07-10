@@ -43,7 +43,7 @@ namespace MobileApp.Views
             {
                 this.defect = defect;
                 Defect.Text = this.defect.DefectType.Value;
-                //Oborud.Text = this.defect.Unit.Value;
+                sads.Text = this.defect.Unit.Value;
                 Group.Text =  this.defect.MeasurementGroup.Value;
                 Kolvo.Text =  this.defect.QuantityFact.ToString();
             }
@@ -64,46 +64,46 @@ namespace MobileApp.Views
 
         private void Delete_Clicked(object sender, EventArgs e)
         {
-            //if (defect!=null)
-            //{ 
-            //    task.Remove(defect);
-            //    page.Refresh();
-            //    Navigation.PopAsync();
-            //}
+            if (defect!=null)
+            { 
+                task.Remove(defect);
+                page.Refresh();
+                Navigation.PopAsync();
+            }
         }
 
         private void RegistrationBtn_Clicked(object sender, EventArgs e)
         {
 
-            //if (Defect.Text == null || Oborud.Text == null || Group.Text == null || Kolvo.Text == null)
-            //{
-            //    DependencyService.Get<IMessage>().LongAlert("Не все поля заполнены!");
-            //    return;
-            //}
-            //if (edit)
-            //{
-            //    this.defect.DefectType.Value = Defect.Text;
-            //    this.defect.Unit.Value = Oborud.Text;
-            //    this.defect.MeasurementGroup.Value = Group.Text;
-            //    this.defect.QuantityFact = Convert.ToInt32(Kolvo.Text);
-            //    page.Refresh();
-            //    Navigation.PopAsync();
-            //}
-            //else
-            //{
-            //    Defect def = new Defect();
-            //    def.DefectType = new SimpleRef() { Value = Defect.Text };
-            //    def.Unit= new SimpleRef() { Value = Oborud.Text                       } ;
-            //    def.MeasurementGroup= new SimpleRef() { Value = Group.Text          } ;
-            //    def.QuantityFact = 0;
-            //    def.IsNew = true;
-            //    def.Job = new SimpleRef() { Value = "" };
-            //    def.QuantityPlan = Convert.ToInt32(Kolvo.Text); ;
-            //    def.Completed = false;
-            //    task.Add(def);
-            //    page.Refresh();
-            //    Navigation.PopAsync();
-            //}
+             if (Defect.Text == null || sads.Text == null || Group.Text == null || Kolvo.Text == null)
+             {
+                 DependencyService.Get<IMessage>().LongAlert("Не все поля заполнены!");
+                 return;
+             }
+             if (defect!=null)
+             {
+                 this.defect.DefectType.Value = Defect.Text;
+                 this.defect.Unit.Value = sads.Text;
+                 this.defect.MeasurementGroup.Value = Group.Text;
+                 this.defect.QuantityFact = Convert.ToInt32(Kolvo.Text);
+                 page.Refresh();
+                 Navigation.PopAsync();
+             }
+             else
+             {
+                 Defect def = new Defect();
+                 def.DefectType = new SimpleRef() { Value = Defect.Text };
+                 def.Unit= new SimpleRef() { Value = sads.Text                       } ;
+                 def.MeasurementGroup= new SimpleRef() { Value = Group.Text          } ;
+                 def.QuantityFact = 0;
+                 def.IsNew = true;
+                 def.Job = new SimpleRef() { Value = "" };
+                 def.QuantityPlan = Convert.ToInt32(Kolvo.Text); ;
+                 def.Completed = false;
+                 task.Add(def);
+                 page.Refresh();
+                 Navigation.PopAsync();
+             }
         }
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
     .Where(x => x.ToLower().StartsWith(text.ToLower()))

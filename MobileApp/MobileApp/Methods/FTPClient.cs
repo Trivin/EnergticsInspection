@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MobileApp.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MobileApp.Methods
 {
@@ -31,7 +33,7 @@ namespace MobileApp.Methods
 
         static void wc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-
+            DependencyService.Get<IMessage>().ShortAlert("Удачная отправка!");
         }
 
         static void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

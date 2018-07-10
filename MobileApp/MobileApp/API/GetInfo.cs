@@ -67,5 +67,41 @@ namespace MobileApp.API
 
             return tcs.Task;
         }
+
+
+/* Необъединенное слияние из проекта "MobileApp.Android"
+До:
+        public static async System.Threading.Tasks.Task SendInfoAsync()
+После:
+        public static async System.Threading.Tasks.Task SendInfo()
+*/
+        public static void SendInfo()
+        {
+            var client = new RestClient("http://185.26.171.127:2756/se_mosin/hs/api/v1/RepairTask?userid=842a3691-8bae-11e2-bc34-5ef3fcdca583");
+            var request = new RestRequest(Method.POST);
+            request.AddJsonBody(Newtonsoft.Json.JsonConvert.SerializeObject(tasks));
+            try
+            {
+                client.ExecuteAsync(request, response =>
+                {
+                    string a;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        success();
+
+                });
+            }
+            catch
+            {
+                notsuccess();
+            }
+        }
+        private static void success()
+        {
+            DependencyService.Get<IMessage>().ShortAlert("Удачная отправка!");
+        }
+        private static void notsuccess()
+        {
+            DependencyService.Get<IMessage>().ShortAlert("Недачная отправка!");
+        }
     }
 }

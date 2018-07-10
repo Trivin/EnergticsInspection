@@ -11,6 +11,8 @@ using MobileApp.API;
 using Xamarin.Forms;
 using MobileApp.Views;
 using System.Windows.Input;
+using System.Threading;
+using MobileApp.Methods;
 
 namespace MobileApp
 {
@@ -36,7 +38,7 @@ namespace MobileApp
             listView.ItemTapped += async (object sender, ItemTappedEventArgs e) =>
             {
                 if (e == null) return;
-                await Navigation.PushAsync(new TaskMainTabbed(listView.SelectedItem as Models.Task));// de-select the row
+                    await Navigation.PushAsync(new TaskMainTabbed(listView.SelectedItem as Models.Task));// de-select the row
                 ((ListView)sender).SelectedItem = null;
             };
             RefreshCommand.Execute(null);
@@ -45,12 +47,13 @@ namespace MobileApp
 
         void Upload(object sender, ItemTappedEventArgs e)
         {
-            string result = "";
-            for (int i = 0; i< GetInfo.tasks.Count; i ++)
+                string result = "";
+            for (int i = 0; i < GetInfo.tasks.Count; i++)
                 if (GetInfo.tasks[i].Photos != null)
                     for (int j = 0; j < GetInfo.tasks[i].Photos.Count; j++)
-                        result += GetInfo.tasks[i].Photos[j] + "\r\n";
-            DependencyService.Get<IMessage>().LongAlert(result);
+                        FTPClient.UploadFile(GetInfo.tasks[i].Photos[j]);
+                DependencyService.Get<IMessage>().LongAlert(result);
+                GetInfo.SendInfo();
             //FTPClient.UploadFile();
         }
 

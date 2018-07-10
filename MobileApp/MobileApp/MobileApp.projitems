@@ -19,6 +19,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Methods\FTPClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NumericValidationBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NumericValidationBehavior2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CreateDefect.xaml.cs">
       <DependentUpon>CreateDefect.xaml</DependentUpon>
       <SubType>Code</SubType>
