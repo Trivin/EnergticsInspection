@@ -11,13 +11,14 @@ namespace MobileApp.Methods
     public static class FTPClient
     {
         static string serverPath = @"ftp://server/folder/";
-        static WebClient wc = new WebClient()
-        {
-            BaseAddress = @"",
-            Credentials = new NetworkCredential("login", "password")
-        };
+
         public static void UploadFile(string fileName)
         {
+            WebClient wc = new WebClient()
+            {
+                BaseAddress = @"",
+                Credentials = new NetworkCredential("login", "password")
+            };
             wc.UploadProgressChanged += new UploadProgressChangedEventHandler(wc_UploadProgressChanged);
             string nameFiles = Path.GetFileName(fileName);
             wc.UploadFileCompleted += new UploadFileCompletedEventHandler(wc_UploadFileCompleted);
@@ -26,6 +27,11 @@ namespace MobileApp.Methods
 
         public static void DownloadFile(string fileName)
         {
+            WebClient wc = new WebClient()
+            {
+                BaseAddress = @"",
+                Credentials = new NetworkCredential("login", "password")
+            };
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
             wc.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(wc_DownloadFileCompleted);
             wc.DownloadFileAsync(new Uri(serverPath + Path.GetFileName(fileName)), @"d:/" + Path.GetFileName(fileName));
@@ -33,7 +39,6 @@ namespace MobileApp.Methods
 
         static void wc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            DependencyService.Get<IMessage>().ShortAlert("Удачная отправка!");
         }
 
         static void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -48,7 +53,7 @@ namespace MobileApp.Methods
 
         static void wc_UploadFileCompleted(object sender, UploadFileCompletedEventArgs e)
         {
-
+            DependencyService.Get<IMessage>().ShortAlert("Удачная отправка!");
         }
     }
 }
