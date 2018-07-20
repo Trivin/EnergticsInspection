@@ -53,7 +53,7 @@ namespace MobileApp.Methods
 
         static void wc_UploadFileCompleted(object sender, UploadFileCompletedEventArgs e)
         {
-            DependencyService.Get<IMessage>().ShortAlert("Удачная отправка!");
+            //DependencyService.Get<IMessage>().ShortAlert("Удачная отправка!");
         }
     }
 }

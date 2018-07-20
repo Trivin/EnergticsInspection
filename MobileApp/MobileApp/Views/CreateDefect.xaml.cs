@@ -29,12 +29,12 @@ namespace MobileApp.Views
             {
                 "Дефект №1","Дефект №2","Дефект №3","Дефект №4","Дефект №5"
             };
-        public CreateDefect (List<Defect> task, DefectsTabbed page, Defect defect = null)
+        public CreateDefect (Models.Task task, DefectsTabbed page, Defect defect = null)
 		{
 			InitializeComponent ();
-            this.task = task;
+            this.task = task.Defects;
             this.page = page;
-            sads.ItemsSource = ks;
+            sads.ItemsSource = task.Units.Select(x=>x.Value);
             Defect.TextChanged += Defect_TextChanged;
             Defect.ItemsSource = kss;
             sads.SortingAlgorithm = SortingAlgorithm;

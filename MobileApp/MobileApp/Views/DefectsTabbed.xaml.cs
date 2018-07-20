@@ -15,8 +15,8 @@ namespace MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DefectsTabbed : TabbedPage
     {
-        List<Defect> Source;
-        public DefectsTabbed (List<Defect> Source)
+        Models.Task Source;
+        public DefectsTabbed (Models.Task Source)
         {
             InitializeComponent();
             this.Source = Source;
@@ -34,8 +34,8 @@ namespace MobileApp.Views
         {
             listView1.ItemsSource = null;
             listView2.ItemsSource = null;
-            listView1.ItemsSource = this.Source.Where(x => (!x.IsNew));
-            listView2.ItemsSource = this.Source.Where(x => (x.IsNew));
+            listView1.ItemsSource = this.Source.Defects.Where(x => (!x.IsNew));
+            listView2.ItemsSource = this.Source.Defects.Where(x => (x.IsNew));
         }
 
         private async System.Threading.Tasks.Task Button_ClickedAsync(object sender, EventArgs e)

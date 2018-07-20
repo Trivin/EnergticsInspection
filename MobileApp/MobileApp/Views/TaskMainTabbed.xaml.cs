@@ -26,7 +26,7 @@ namespace MobileApp.Views
             InitializeComponent();
             this.Source = Source;
             BindingContext = this.Source;
-            Children.Add(new DefectsTabbed(Source.Defects));
+            Children.Add(new DefectsTabbed(Source));
             Children.Add(new ResourcesTabbedPage(Source.Resources));
             //ToolbarItems.Add(new ToolbarItem {Text = "Сделать фото", Order = ToolbarItemOrder.Primary, Priority=1, Parent = this, Icon= "photo.png" });
             ToolbarItem tl = new ToolbarItem { Text = "Начать", Order = ToolbarItemOrder.Primary, Priority = 0, Parent = this, Icon = Source.Started?"stop.png":"start.png" };
@@ -34,37 +34,44 @@ namespace MobileApp.Views
             ToolbarItems.Add(tl);
             ToolbarItems[0].Clicked += async (o, e) =>
               {
-                  var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                  var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-
-                  if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
+                  try
                   {
-                      var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
-                      cameraStatus = results[Permission.Camera];
-                      storageStatus = results[Permission.Storage];
-                  }
+                      var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                      var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
 
-                  if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
-                  {
-                      if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+                      if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
                       {
-                          MediaFile file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-                          {
-                              SaveToAlbum = true,
-                              Directory = "Sample",
-                              Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
-                          });
+                          var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
+                          cameraStatus = results[Permission.Camera];
+                          storageStatus = results[Permission.Storage];
+                      }
 
-                          if (file == null)
-                              return;
-                          else
-                              Source.Photos.Add(file.AlbumPath);
+                      if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
+                      {
+                          if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+                          {
+                              MediaFile file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                              {
+                                  SaveToAlbum = true,
+                                  Directory = "Sample",
+                                  Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
+                              });
+
+                              if (file == null)
+                                  return;
+                              else
+                                  Source.Photos.Add(file.AlbumPath);
+                          }
+                      }
+                      else
+                      {
+                          //On iOS you may want to send your user to the settings screen.
+                          //CrossPermissions.Current.OpenAppSettings();
                       }
                   }
-                  else
+                  catch
                   {
-                      //On iOS you may want to send your user to the settings screen.
-                      //CrossPermissions.Current.OpenAppSettings();
+
                   }
               };
             JobsListView.ItemsSource = this.Source.Jobs;

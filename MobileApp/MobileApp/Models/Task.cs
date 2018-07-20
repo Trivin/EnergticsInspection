@@ -4,8 +4,9 @@ using System.Text;
 
 namespace MobileApp.Models
 {
-    public class Task
+    public class Task   
     {
+        public bool Compl { get; set; } = false;
         public bool Started { get; set; } = false;
         public string Id { get; set; }
         public string Description { get; set; }

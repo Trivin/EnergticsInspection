@@ -5,13 +5,17 @@ using System.Threading;
 using Android.Widget;
 using MobileApp.Models;
 using RestSharp;
+using System.Net.Http;
 using Xamarin.Forms;
+using System.Linq;
+using System.IO;
 
 namespace MobileApp.API
 {
     public static class GetInfo
     {
         public static List<Task> tasks;
+        public static MainPage page;
         public static async System.Threading.Tasks.Task GetInfoAsync()
         {
             var client = new RestClient("http://185.26.171.127:2756/se_mosin/hs/api/v1/RepairTask?userid=842a3691-8bae-11e2-bc34-5ef3fcdca583");
@@ -59,8 +63,9 @@ namespace MobileApp.API
 
             @this.ExecuteAsync<T>(request, (response) =>
             {
-                if (response.ErrorException != null)
-                    tcs.TrySetException(response.ErrorException);
+                string rr = response.Content;
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                    tcs = null;
                 else
                     tcs.TrySetResult(response.Data);
             });
@@ -75,33 +80,84 @@ namespace MobileApp.API
 После:
         public static async System.Threading.Tasks.Task SendInfo()
 */
-        public static void SendInfo()
+        public static async System.Threading.Tasks.Task SendInfoAsync()
         {
             var client = new RestClient("http://185.26.171.127:2756/se_mosin/hs/api/v1/RepairTask?userid=842a3691-8bae-11e2-bc34-5ef3fcdca583");
             var request = new RestRequest(Method.POST);
-            request.AddJsonBody(Newtonsoft.Json.JsonConvert.SerializeObject(tasks));
-            try
-            {
-                client.ExecuteAsync(request, response =>
-                {
-                    string a;
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                        success();
+            string sl = Newtonsoft.Json.JsonConvert.SerializeObject(tasks.Where(x => x.Compl == true).ToList());
+            request.AddParameter("application/json", sl,ParameterType.RequestBody);
+            //request.AddJsonBody(sl);
+            //try
+            //{
+            //    var obj = await ExecuteTaskAsync<RestResponse>(client,request);
+            //    if (obj.StatusCode == System.Net.HttpStatusCode.OK)
+            //        success();
+            //}
+            //catch
+            //{
+            //    notsuccess();
+            //}
+            //var client2 = new RestClient("http://185.26.171.127:2756/se_mosin/hs/api/v1/RepairTaskPhoto?userid=842a3691-8bae-11e2-bc34-5ef3fcdca583");
+            //var request2 = new RestRequest(Method.POST);
+            var taskList = tasks.Where(x => x.Compl == true).ToList();
+            //for (int i = 0; i < taskList.Count; i++)
+            //    if (taskList[i].Photos != null)
+            //        for (int j = 0; j < taskList[i].Photos.Count; j++)
+            //        {
+            //            request2.AddFile("Файлиг", taskList[i].Photos[j], "image/jpeg");
+            //        }
+            //try
+            //{
+            //    var obj2 = client2.Execute(request2);
+            //    string sss = obj2.Content;
+            //    if (obj2 != null)
+            //    {
+            //        if (obj2.StatusCode == System.Net.HttpStatusCode.OK)
+            //            success();
+            //    }
+            //    else
+            //        notsuccess();
+            //}
+            //catch
+            //{
+            //
+            //}
 
-                });
-            }
-            catch
-            {
-                notsuccess();
-            }
+            for (int i = 0; i < taskList.Count; i++)
+                if (taskList[i].Photos != null)
+                    for (int j = 0; j < taskList[i].Photos.Count; j++)
+                    {
+                        var file = taskList[i].Photos[j];
+
+                        try
+                        {
+                            var upfilebytes = File.ReadAllBytes(file);
+
+                            HttpClient client3 = new HttpClient();
+                            ByteArrayContent content = new ByteArrayContent(upfilebytes);
+                            HttpRequestMessage reqe = new HttpRequestMessage(HttpMethod.Post, "http://185.26.171.127:2756/se_mosin/hs/api/v1/RepairTaskPhoto?id=842a3691-8bae-11e2-bc34-5ef3fcdca583");
+                            reqe.Content = content;
+                            var response =
+                                await client3.SendAsync(reqe);
+                            var responsestr = response.Content.ReadAsStringAsync().Result;
+
+
+                        }
+                        catch (Exception e)
+                        {
+
+                            return;
+                        }
+                    }
+
         }
         private static void success()
         {
-            DependencyService.Get<IMessage>().ShortAlert("Удачная отправка!");
+            DependencyService.Get<IMessage>().ShortAlert("Удачно отправлено данных!");
         }
         private static void notsuccess()
         {
-            DependencyService.Get<IMessage>().ShortAlert("Недачная отправка!");
+            DependencyService.Get<IMessage>().ShortAlert("Неудачная отправка данных!");
         }
     }
 }

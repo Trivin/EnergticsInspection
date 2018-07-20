@@ -32,6 +32,7 @@ namespace MobileApp
         public MainPage(bool isOnline)
 		{
 			InitializeComponent();
+            GetInfo.page = this;
             this.isOnline = isOnline;
             listView.IsRefreshing = IsRefreshing;           
             listView.RefreshCommand = RefreshCommand;
@@ -45,19 +46,40 @@ namespace MobileApp
         }
 
 
-        void Upload(object sender, ItemTappedEventArgs e)
+        async System.Threading.Tasks.Task UploadAsync(object sender, ItemTappedEventArgs e)
         {
+            try
+            {
+                if ((GetInfo.tasks.Where(x => x.Compl == true).ToList()).Count==0)
+                {
+                    DependencyService.Get<IMessage>().LongAlert("Не выбранные данные для отправки!");
+                    return;
+                }
                 string result = "";
-            for (int i = 0; i < GetInfo.tasks.Count; i++)
-                if (GetInfo.tasks[i].Photos != null)
-                    for (int j = 0; j < GetInfo.tasks[i].Photos.Count; j++)
-                        FTPClient.UploadFile(GetInfo.tasks[i].Photos[j]);
+                for (int i = 0; i < GetInfo.tasks.Count; i++)
+                    if (GetInfo.tasks[i].Photos != null)
+                        for (int j = 0; j < GetInfo.tasks[i].Photos.Count; j++)
+                        {
+                            result += GetInfo.tasks[i].Photos[j] + "\n";
+                            FTPClient.UploadFile(GetInfo.tasks[i].Photos[j]);
+                        }
+                await GetInfo.SendInfoAsync();
                 DependencyService.Get<IMessage>().LongAlert(result);
-                GetInfo.SendInfo();
+            }
+            catch (Exception err)
+            {
+                DependencyService.Get<IMessage>().LongAlert("Ошибка при отправке!");
+            }
             //FTPClient.UploadFile();
         }
 
-        public  ICommand RefreshCommand
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            string res1 = JsonConvert.SerializeObject(GetInfo.tasks);
+            App.Current.Properties["obj"] = res1;
+        }
+
+        public ICommand RefreshCommand
         {
             get
             {
