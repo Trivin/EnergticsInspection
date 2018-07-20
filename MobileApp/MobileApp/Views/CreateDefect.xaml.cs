@@ -19,7 +19,7 @@ namespace MobileApp.Views
 	{
         private Defect defect;
         List<Defect> task;
-        DefectsTabbed page;
+        DefectsTab page;
         List<string> ks = new List<string>()
             {
                 "Оборудование №1","Оборудование №2","Оборудование №3","Оборудование №4","Оборудование №5"
@@ -29,7 +29,7 @@ namespace MobileApp.Views
             {
                 "Дефект №1","Дефект №2","Дефект №3","Дефект №4","Дефект №5"
             };
-        public CreateDefect (Models.Task task, DefectsTabbed page, Defect defect = null)
+        public CreateDefect (Models.Task task, DefectsTab page, Defect defect = null)
 		{
 			InitializeComponent ();
             this.task = task.Defects;

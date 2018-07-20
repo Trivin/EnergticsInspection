@@ -24,8 +24,8 @@
       <DependentUpon>CreateDefect.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\DefectsTabbed.xaml.cs">
-      <DependentUpon>DefectsTabbed.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DefectsTab.xaml.cs">
+      <DependentUpon>DefectsTab.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml.cs">
@@ -70,7 +70,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DefectsTabbed.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DefectsTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

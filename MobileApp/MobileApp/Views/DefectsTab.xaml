@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.DefectsTab" x:Name="page">
+    <ContentPage.Content>
+        <ListView x:Name="listView1" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="0" Grid.Column="0" Text="Вид работ:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="0" Grid.Column="1" Text="{Binding Job.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="0" Text="Объект:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="1" Text="{Binding Unit.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="0" Text="Группа:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="1" Text="{Binding MeasurementGroup.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="0" Text="Дефект:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="1" Text="{Binding DefectType.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="0" Text="Кол-во:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="1" Text="{Binding QuantityPlan}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="5" Grid.Column="0" Text="Устранен:"/>
+                            <Switch Toggled="Switch_Toggled" IsToggled="{Binding Completed , Mode=TwoWay}" HorizontalOptions="StartAndExpand" Grid.Row="5"  Grid.Column="1" Margin="10,5,10,5"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

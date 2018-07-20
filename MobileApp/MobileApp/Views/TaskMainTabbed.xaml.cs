@@ -26,7 +26,13 @@ namespace MobileApp.Views
             InitializeComponent();
             this.Source = Source;
             BindingContext = this.Source;
-            Children.Add(new DefectsTabbed(Source));
+            TabbedPage defectsPage = new TabbedPage(){ Title = "Дефекты" };
+            defectsPage.Children.Add(new DefectsTab(Source, false){ Title = "Устраненные" });
+            defectsPage.Children.Add(new DefectsTab(Source, true) { Title = "Зарегистрированные"});
+            defectsPage.ToolbarItems.Add(new ToolbarItem("addingDef", "plus.png", new Action(async () => {
+                await Navigation.PushAsync(new CreateDefect(Source, defectsPage.Children[1] as DefectsTab));// de-select the row
+            })));
+            Children.Add(defectsPage);
             Children.Add(new ResourcesTabbedPage(Source.Resources));
             //ToolbarItems.Add(new ToolbarItem {Text = "Сделать фото", Order = ToolbarItemOrder.Primary, Priority=1, Parent = this, Icon= "photo.png" });
             ToolbarItem tl = new ToolbarItem { Text = "Начать", Order = ToolbarItemOrder.Primary, Priority = 0, Parent = this, Icon = Source.Started?"stop.png":"start.png" };

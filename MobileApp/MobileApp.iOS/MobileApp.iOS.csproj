@@ -206,6 +206,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\upload.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\MobileApp\MobileApp.projitems" Label="Shared" />
 </Project>
