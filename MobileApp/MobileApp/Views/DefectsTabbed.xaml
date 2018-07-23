@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.Views.DefectsTabbed"
             Title="Дефекты">
-  <!--Pages can be added as references or inline-->
+    <!--Pages can be added as references or inline-->
     <ContentPage Title="Устраненные">
         <ListView x:Name="listView1" HasUnevenRows="True">
             <ListView.ItemTemplate>
@@ -16,48 +16,24 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="0" >
-                                <Label Text="Вид работ:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="0" >
-                                <Label Text="{Binding Job.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="1">
-                                <Label Text="Объект:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}"  Grid.Row="1">
-                                <Label Text="{Binding Unit.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout  Style="{DynamicResource DefectsLabelName}" Grid.Row="2" >
-                                <Label Text="Группа:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="2" >
-                                <Label Text="{Binding MeasurementGroup.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="3" >
-                                <Label Text="Дефект:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="3">
-                                <Label Text="{Binding DefectType.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="4"  >
-                                <Label Text="Кол-во:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="4">
-                                <Label Text="{Binding QuantityPlan}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="5"  >
-                                <Label Text="Устранен:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" HorizontalOptions="StartAndExpand" Grid.Row="5" Margin="10,5,10,5" >
-                                <Switch Toggled="Switch_Toggled" IsToggled="{Binding Completed , Mode=TwoWay}"/>
-                            </StackLayout>
+                            <Label Style="{DynamicResource StandartHeader}" Grid.Row="0" Grid.Column="0" Text="Вид работ:"/>
+                            <Label Style="{DynamicResource StandartHeader}" Grid.Row="0" Grid.Column="1" Text="{Binding Job.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="0" Text="Объект:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="1" Text="{Binding Unit.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="0" Text="Группа:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="1" Text="{Binding MeasurementGroup.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="0" Text="Дефект:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="1" Text="{Binding DefectType.Value}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="0" Text="Кол-во:"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="1" Text="{Binding QuantityPlan}"/>
+                            <Label Style="{DynamicResource StandartText}" Grid.Row="5" Grid.Column="0" Text="Устранен:" VerticalOptions="FillAndExpand"/>
+                            <Switch Toggled="Switch_Toggled" IsToggled="{Binding Completed , Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Grid.Row="5"  Grid.Column="1" Margin="10,5,10,5"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -67,63 +43,39 @@
     <ContentPage Title="Зарегистрированные">
         <StackLayout Orientation="Vertical">
             <ListView x:Name="listView2" HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="0" >
-                                <Label Text="Вид работ:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="0" >
-                                <Label Text="{Binding Job.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="1">
-                                <Label Text="Объект:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}"  Grid.Row="1">
-                                <Label Text="{Binding Unit.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout  Style="{DynamicResource DefectsLabelName}" Grid.Row="2" >
-                                <Label Text="Группа:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="2" >
-                                <Label Text="{Binding MeasurementGroup.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="3" >
-                                <Label Text="Дефект:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="3">
-                                <Label Text="{Binding DefectType.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="4"  >
-                                <Label Text="Кол-во:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="4">
-                                <Label Text="{Binding QuantityPlan}" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="5"  >
-                                <Label Text="Устранен:" Style ="{DynamicResource DefectsLabel}"/>
-                            </StackLayout>
-                            <StackLayout Style="{DynamicResource DefectsLabelValue}" HorizontalOptions="StartAndExpand" Grid.Row="5" Margin="10,5,10,5" >
-                                <Switch Toggled="Switch_Toggled" IsToggled="{Binding Completed , Mode=TwoWay}"/>
-                            </StackLayout>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Style="{DynamicResource StandartHeader}" Grid.Row="0" Grid.Column="0" Text="Вид работ:"/>
+                                <Label Style="{DynamicResource StandartHeader}" Grid.Row="0" Grid.Column="1" Text="{Binding Job.Value}"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="0" Text="Объект:"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="1" Text="{Binding Unit.Value}"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="0" Text="Группа:"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="1" Text="{Binding MeasurementGroup.Value}"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="0" Text="Дефект:"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="1" Text="{Binding DefectType.Value}"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="0" Text="Кол-во:"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="1" Text="{Binding QuantityPlan}"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="5" Grid.Column="0" Text="Устранен:" VerticalOptions="FillAndExpand"/>
+                                <Switch Toggled="Switch_Toggled" IsToggled="{Binding Completed , Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Grid.Row="5"  Grid.Column="1" Margin="10,5,10,5"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Button Text="Добавить" HeightRequest="40" Clicked="Button_ClickedAsync"/>
         </StackLayout>
     </ContentPage>

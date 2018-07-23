@@ -33,7 +33,7 @@
                 <Label Style ="{DynamicResource StandartText}"   Grid.Row="2" Grid.Column="0" Text="Плановая дата выполнения:" />
                 <Label Style ="{DynamicResource StandartText}"   Grid.Row="2" Grid.Column="1" Text="{Binding PlainDate}"/>
                 <Label Style ="{DynamicResource StandartText}"   Grid.Row="3" Grid.Column="0" Text="Координаты объекта:"/>
-                <Label Style ="{DynamicResource StandartText}"   Grid.Row="3" Grid.Column="1" Text="{Binding GPS}"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="3" Grid.Column="1" Text="{Binding GPSProperty}"/>
                 <Label Style ="{DynamicResource StandartText}"   Grid.Row="4" Grid.Column="0" Text="Начало выполнения:"/>
                 <Label Style ="{DynamicResource StandartText}"   Grid.Row="4" Grid.Column="1" Text="{Binding FactDate}" x:Name="factDate"/>
                 <Label Style ="{DynamicResource StandartHeader}" Grid.Row="5" Grid.Column="0" Text="Оборудование:"  Grid.ColumnSpan="2" />
@@ -65,14 +65,14 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Style="{DynamicResource StandartText}" Grid.Row="0" Grid.Column="0" Text="Вид работ:"/>
-                                <Label Style="{DynamicResource StandartText}" Grid.Row="0" Grid.Column="1" Text="{Binding Job.Value}" />
+                                <Label Style="{DynamicResource StandartHeader}" Grid.Row="0" Grid.Column="0" Text="Вид работ:"/>
+                                <Label Style="{DynamicResource StandartHeader}" Grid.Row="0" Grid.Column="1" Text="{Binding Job.Value}" />
                                 <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="0" Text="Код работ:" />
                                 <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="1" Text="{Binding JobCode}" />
                                 <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="0" Text="Кол-во:" />
                                 <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="1" Text="{Binding QuantityPlain}" />
                                 <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="0" Text="Кол-во факт:" />
-                                <Entry Grid.Row="3" Grid.Column="1" Text="{Binding QuantityFact, Mode=TwoWay}" FontSize="14"  VerticalOptions="FillAndExpand" Margin="10,5,10,5" TextChanged="Entry_TextChanged">
+                                <Entry Grid.Row="3" Grid.Column="1" Text="{Binding QuantityFact, Mode=TwoWay}" Style="{StaticResource StandartEntry}"  VerticalOptions="FillAndExpand" TextChanged="Entry_TextChanged">
                                     <Entry.Behaviors>
                                         <local1:NumericValidationBehavior />
                                     </Entry.Behaviors>

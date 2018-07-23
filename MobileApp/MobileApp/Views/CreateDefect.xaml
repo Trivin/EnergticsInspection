@@ -19,46 +19,20 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="CenterAndExpand">
-                    <Button x:Name="RegistrationBtn" Text="Зарегистрировать"/>
-                </StackLayout>
-                <StackLayout Grid.Column="1" Grid.Row="0" VerticalOptions="CenterAndExpand">
-                    <Button x:Name="Delete" Text="Удалить"/>
-                </StackLayout>
-                <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="CenterAndExpand">
-                    <Label TextColor="#000000" Text="Ед. оборудования:" VerticalTextAlignment="Center" FontSize="14" Margin="10,5,10,0"/>
-                </StackLayout>
-                <StackLayout Grid.Column="1" Grid.Row="1" VerticalOptions="CenterAndExpand">
-                    <xfx:XfxComboBox  x:Name="sads" Placeholder="Оборудование"/>
-                </StackLayout>
-                <StackLayout Grid.Column="0" Grid.Row="2" VerticalOptions="CenterAndExpand">
-                    <Label TextColor="#000000" Text="Вид дефекта:" VerticalTextAlignment="Center" FontSize="14" Margin="10,5,10,0"/>
-                </StackLayout>
-                <StackLayout Grid.Column="1" Grid.Row="2" VerticalOptions="CenterAndExpand">
-                    <xfx:XfxComboBox  x:Name="Defect" Placeholder="Дефект"/>
-                </StackLayout>
-                <StackLayout Grid.Column="0" Grid.Row="3" VerticalOptions="CenterAndExpand">
-                    <Label TextColor="#000000" Text="Группа измерения:" VerticalTextAlignment="Center" FontSize="14" Margin="10,5,10,0"/>
-                </StackLayout>
-                <StackLayout Grid.Column="1" Grid.Row="3" VerticalOptions="CenterAndExpand">
-                    <Entry x:Name="Group" Placeholder="Группа"   
-                           PlaceholderColor="Black"
-                           FontSize="14"
-                           TextColor="Black"/>
-                </StackLayout>
-                <StackLayout Grid.Column="0" Grid.Row="4" VerticalOptions="CenterAndExpand">
-                    <Label TextColor="#000000" Text="Кол-во:" VerticalTextAlignment="Center" FontSize="14" Margin="10,5,10,0"/>
-                </StackLayout>
-                <StackLayout Grid.Column="1" Grid.Row="4" VerticalOptions="CenterAndExpand">
-                    <Entry x:Name="Kolvo" Placeholder="Количество"   
-                           PlaceholderColor="Black"
-                           FontSize="14"
-                           TextColor="Black">
-                        <Entry.Behaviors>
-                            <local1:NumericValidationBehavior2 />
-                        </Entry.Behaviors>
-                    </Entry>
-                </StackLayout>
+                <Button Grid.Column="0" Grid.Row="0" x:Name="RegistrationBtn" Text="Зарегистрировать"/>
+                <Button Grid.Column="1" Grid.Row="0" x:Name="Delete" Text="Удалить"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Ед. оборудования:" Style="{StaticResource StandartText}"/>
+                <xfx:XfxComboBox Grid.Column="1" Grid.Row="1" x:Name="sads" Placeholder="Оборудование" Style="{StaticResource StandartEntry}"/>
+                <Label Grid.Column="0" Grid.Row="2" Text="Вид дефекта:" Style="{StaticResource StandartEntry}"/>
+                <xfx:XfxComboBox Grid.Column="1" Grid.Row="2" x:Name="Defect" Placeholder="Дефект" Style="{StaticResource StandartEntry}"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="Группа измерения:"  Style="{StaticResource StandartText}"/>
+                <Entry Grid.Column="1" Grid.Row="3" x:Name="Group" Placeholder="Группа"  Style="{StaticResource StandartEntry}" />
+                <Label Grid.Column="0" Grid.Row="4" Text="Кол-во:" Style="{StaticResource StandartText}"/>
+                <Entry Grid.Column="1" Grid.Row="4" x:Name="Kolvo" Placeholder="Количество" Style="{StaticResource StandartEntry}">
+                    <Entry.Behaviors>
+                        <local1:NumericValidationBehavior2 />
+                    </Entry.Behaviors>
+                </Entry>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

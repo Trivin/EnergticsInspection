@@ -36,6 +36,8 @@ namespace MobileApp.API
                 App.Current.Properties["obj"] = obj;
             else
                 App.Current.Properties.Add("obj", obj);
+            if (App.Current.Properties["obj"].ToString()=="")
+                App.Current.Properties["obj"] = obj;
         }
 
         public static void GetInfoOffline()

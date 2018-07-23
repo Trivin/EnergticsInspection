@@ -20,6 +20,16 @@ namespace MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TaskMainTabbed : TabbedPage
     {
+
+        public string GPSProperty
+        {
+
+            get
+            {
+                return string.Format("{0}:{1}", Source.GPS.X, Source.GPS.Y);
+            }
+        }
+
         Models.Task Source;
         public TaskMainTabbed (Models.Task Source)
         {
@@ -27,7 +37,23 @@ namespace MobileApp.Views
             this.Source = Source;
             BindingContext = this.Source;
             Children.Add(new DefectsTabbed(Source));
-            Children.Add(new ResourcesTabbedPage(Source.Resources));
+            TabbedPage ResourcesTabbedPage = new TabbedPage() {Title = "Ресурсы" };
+            ResourcesTabbedPage.Children.Add(new ResourcePage(Source.Resources.Where(x => (x.ResourceType == ResourceType.Materials)).ToList())
+            {
+                Title = "Материалы"
+            }
+            );
+            ResourcesTabbedPage.Children.Add(new ResourcePage(Source.Resources.Where(x => (x.ResourceType == ResourceType.Device)).ToList())
+            {
+                Title = "Машины"
+            }
+            );
+            ResourcesTabbedPage.Children.Add(new ResourcePage(Source.Resources.Where(x => (x.ResourceType == ResourceType.Workforce)).ToList())
+            {
+                Title = "Трудовые ресурсы",
+            }
+            );
+            Children.Add(ResourcesTabbedPage);
             //ToolbarItems.Add(new ToolbarItem {Text = "Сделать фото", Order = ToolbarItemOrder.Primary, Priority=1, Parent = this, Icon= "photo.png" });
             ToolbarItem tl = new ToolbarItem { Text = "Начать", Order = ToolbarItemOrder.Primary, Priority = 0, Parent = this, Icon = Source.Started?"stop.png":"start.png" };
             tl.Clicked += Start; 

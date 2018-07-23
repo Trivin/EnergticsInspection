@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.ResourcePage"
+             xmlns:local1="clr-namespace:MobileApp">
+    <ContentPage.Content>
+        <ListView x:Name="MaterialListView" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0" Grid.Row="0" Style="{StaticResource StandartHeader}" Text="Ресурс:"/>
+                            <Label  Grid.Column="1" Grid.Row="0" Style="{StaticResource StandartHeader}" Text="{Binding Resource.Value}"/>
+                            <Label  Grid.Column="0" Grid.Row="1" Style="{StaticResource StandartText}"   Text="Вид работ:" />
+                            <Label  Grid.Column="1" Grid.Row="1" Style="{StaticResource StandartText}"   Text="{Binding Job.Value}"/>
+                            <Label  Grid.Column="0" Grid.Row="2" Style="{StaticResource StandartText}"   Text="Количество:"/>
+                            <Label  Grid.Column="1" Grid.Row="2" Style="{StaticResource StandartText}"   Text="{Binding QuantityPlain}"/>
+                            <Label  Grid.Column="0" Grid.Row="3" Style="{StaticResource StandartText}"  Text="Ед. измерения:"/>
+                            <Label  Grid.Column="1" Grid.Row="3" Style="{StaticResource StandartText}"  Text="{Binding Measure}"/>
+                            <Label  Grid.Column="0" Grid.Row="4" Style="{StaticResource StandartText}"  Text="Кол-во факт:"/>
+                            <Entry  Grid.Column="1" Grid.Row="4" Text="{Binding QuantityFact, Mode=TwoWay}" Style="{StaticResource StandartEntry}">
+                                <Entry.Behaviors>
+                                    <local1:NumericValidationBehavior />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
