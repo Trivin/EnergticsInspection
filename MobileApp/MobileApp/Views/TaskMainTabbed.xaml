@@ -26,33 +26,22 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label FontSize="14" Text="Наименование:" TextColor="Black"   Grid.Row="0" Grid.Column="0" Margin="10,15,0,0" />
-                <Label FontSize="14" Text="{Binding ComplexObject.Value}" TextColor="Black"   Grid.Row="0" Grid.Column="1" Margin="0,15,10,0"/>
-                <Label FontSize="14" Text="Вид мероприятия:" TextColor="Black"   Grid.Row="1" Grid.Column="0" Margin="10,0,0,0"/>
-                <Label FontSize="14" Text="{Binding MaintenanceType.Value}" TextColor="Black"   Grid.Row="1" Grid.Column="1" Margin="0,0,10,0"/>
-                <Label FontSize="14" Text="Плановая дата выполнения:" TextColor="Black"   Grid.Row="2" Grid.Column="0" Margin="10,0,0,0"/>
-                <Label FontSize="14" Text="{Binding PlainDate}" TextColor="Black"   Grid.Row="2" Grid.Column="1" Margin="0,0,10,0"/>
-                <Label FontSize="14" Text="Координаты объекта:" TextColor="Black"   Grid.Row="3" Grid.Column="0" Margin="10,0,0,0"/>
-                <Label FontSize="14" Text="{Binding GPS}" TextColor="Black"   Grid.Row="3" Grid.Column="1" Margin="0,0,10,0"/>
-                <Label FontSize="14" Text="Начало выполнения:" TextColor="Black"   Grid.Row="4" Grid.Column="0" Margin="10,0,0,0"/>
-                <Label x:Name="factDate" FontSize="14" Text="{Binding FactDate}" TextColor="Black"   Grid.Row="4" Grid.Column="1" Margin="0,0,10,0"/>
-                <Label FontSize="16" Text="Оборудование:" TextColor="Black"   Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  Margin="10,0,0,0"/>
-                <ListView x:Name="listView" HasUnevenRows="True" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,0,0">
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="0" Grid.Column="0" Text="Наименование:"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="0" Grid.Column="1" Text="{Binding ComplexObject.Value}"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="1" Grid.Column="0" Text="Вид мероприятия:" />
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="1" Grid.Column="1" Text="{Binding MaintenanceType.Value}"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="2" Grid.Column="0" Text="Плановая дата выполнения:" />
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="2" Grid.Column="1" Text="{Binding PlainDate}"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="3" Grid.Column="0" Text="Координаты объекта:"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="3" Grid.Column="1" Text="{Binding GPS}"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="4" Grid.Column="0" Text="Начало выполнения:"/>
+                <Label Style ="{DynamicResource StandartText}"   Grid.Row="4" Grid.Column="1" Text="{Binding FactDate}" x:Name="factDate"/>
+                <Label Style ="{DynamicResource StandartHeader}" Grid.Row="5" Grid.Column="0" Text="Оборудование:"  Grid.ColumnSpan="2" />
+                <ListView x:Name="listView" HasUnevenRows="True" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <!--<RowDefinition Height="Auto"/>-->
-                                    </Grid.RowDefinitions>
-                                    <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand">
-                                        <Label Text="{Binding Value}" Style ="{DynamicResource DefectsLabel}" Margin="10,5,10,5"/>
-                                    </StackLayout>
-                                    <!--<StackLayout Grid.Row="1" VerticalOptions="FillAndExpand">
-                                            <Label Text="{Binding Job.Value}" Style ="{DynamicResource DefectsLabel}" Margin="10,5,10,5"/>
-                                        </StackLayout>-->
-                                </Grid>
+                                <Label Style ="{DynamicResource StandartText}" Text="{Binding Value}"/>                                
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -74,43 +63,22 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
-                                <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="0" >
-                                    <Label Text="Вид работ:" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="0" >
-                                    <Label Text="{Binding Job.Value}" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="1">
-                                    <Label Text="Код работ:" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelValue}"  Grid.Row="1">
-                                    <Label Text="{Binding JobCode}" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout  Style="{DynamicResource DefectsLabelName}" Grid.Row="2" >
-                                    <Label Text="Кол-во:" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="2" >
-                                    <Label Text="{Binding QuantityPlain}" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="3" >
-                                    <Label Text="Кол-во факт:" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="3">
-                                    <Entry Text="{Binding QuantityFact, Mode=TwoWay}" FontSize="14"  VerticalOptions="FillAndExpand" Margin="7,0,10,0" TextChanged="Entry_TextChanged">
-                                        <Entry.Behaviors>
-                                            <local1:NumericValidationBehavior />
-                                        </Entry.Behaviors>
-                                    </Entry>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelName}" Grid.Row="4"  >
-                                    <Label Text="Ед. изм:" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
-                                <StackLayout Style="{DynamicResource DefectsLabelValue}" Grid.Row="4" Margin="10,0,10,5" VerticalOptions="FillAndExpand">
-                                    <Label Text="{Binding Measure}" Style ="{DynamicResource DefectsLabel}"/>
-                                </StackLayout>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="0" Grid.Column="0" Text="Вид работ:"/>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="0" Grid.Column="1" Text="{Binding Job.Value}" />
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="0" Text="Код работ:" />
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="1" Grid.Column="1" Text="{Binding JobCode}" />
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="0" Text="Кол-во:" />
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="2" Grid.Column="1" Text="{Binding QuantityPlain}" />
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="3" Grid.Column="0" Text="Кол-во факт:" />
+                                <Entry Grid.Row="3" Grid.Column="1" Text="{Binding QuantityFact, Mode=TwoWay}" FontSize="14"  VerticalOptions="FillAndExpand" Margin="10,5,10,5" TextChanged="Entry_TextChanged">
+                                    <Entry.Behaviors>
+                                        <local1:NumericValidationBehavior />
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="0" Text="Ед. изм:" />
+                                <Label Style="{DynamicResource StandartText}" Grid.Row="4" Grid.Column="1" Text="{Binding Measure}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
