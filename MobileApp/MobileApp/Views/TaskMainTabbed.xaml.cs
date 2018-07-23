@@ -21,15 +21,6 @@ namespace MobileApp.Views
     public partial class TaskMainTabbed : TabbedPage
     {
 
-        public string GPSProperty
-        {
-
-            get
-            {
-                return string.Format("{0}:{1}", Source.GPS.X, Source.GPS.Y);
-            }
-        }
-
         Models.Task Source;
         public TaskMainTabbed (Models.Task Source)
         {

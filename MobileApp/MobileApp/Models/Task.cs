@@ -19,6 +19,13 @@ namespace MobileApp.Models
         public List<JobItem> Jobs { get; set; }
         public List<Defect> Defects { get; set; }
         public List<SimpleRef> Units { get; set; }
+        public string GPSProperty
+        {
+            get
+            {
+                return string.Format("{0} : {1}", GPS.X, GPS.Y);
+            }
+        }
         public List<string> Photos { get; set; } = new List<string>();
     }
 
