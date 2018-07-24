@@ -12,6 +12,11 @@
     </TabbedPage.ToolbarItems>
     <TabbedPage.Children>
         <ContentPage Title="Главная">
+            <ContentPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS">main.png</On>
+                </OnPlatform>
+            </ContentPage.Icon>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -49,6 +54,11 @@
             </Grid>
         </ContentPage>
         <ContentPage Title="Виды работ">
+            <ContentPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS">remont.png</On>
+                </OnPlatform>
+            </ContentPage.Icon>
             <ListView x:Name="JobsListView" HasUnevenRows="True" >
                 <ListView.ItemTemplate>
                     <DataTemplate>

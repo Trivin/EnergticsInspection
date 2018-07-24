@@ -30,7 +30,7 @@
                                 <Label  Grid.Column="0" Grid.Row="1" Style="{StaticResource StandartText}"   Text="Задача:"/>
                                 <Label  Grid.Column="1" Grid.Row="1" Style="{StaticResource StandartText}"   Text="{Binding Description}"/>
                                 <Label  Grid.Column="0" Grid.Row="2" Style="{StaticResource StandartText}"   Text="Выполнен:"/>
-                                <Switch Grid.Column="1" Grid.Row="2" Toggled="Switch_Toggled" HorizontalOptions="StartAndExpand" IsToggled="{Binding Compl , Mode=TwoWay}"/>
+                                <Switch Grid.Column="1" Grid.Row="2" Toggled="Switch_Toggled" HorizontalOptions="StartAndExpand" IsToggled="{Binding Compl , Mode=TwoWay}" Margin="10,5,0,5"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

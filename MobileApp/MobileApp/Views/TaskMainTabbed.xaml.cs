@@ -27,8 +27,8 @@ namespace MobileApp.Views
             InitializeComponent();
             this.Source = Source;
             BindingContext = this.Source;
-            Children.Add(new DefectsTabbed(Source));
-            TabbedPage ResourcesTabbedPage = new TabbedPage() {Title = "Ресурсы" };
+            Children.Add(new DefectsTabbed(Source) { Icon = Device.RuntimePlatform == Device.iOS ? "wire.png" : null });
+            TabbedPage ResourcesTabbedPage = new TabbedPage() {Title = "Ресурсы", Icon = Device.RuntimePlatform == Device.iOS ? "resoureces.png" : null };
             ResourcesTabbedPage.Children.Add(new ResourcePage(Source.Resources.Where(x => (x.ResourceType == ResourceType.Materials)).ToList())
             {
                 Title = "Материалы"
