@@ -4,22 +4,34 @@
              x:Class="MobileApp.Views.LoginPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
+        <ScrollView>            
         <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
             <BoxView HeightRequest="10"/>
-            <Image HorizontalOptions="Center" WidthRequest="300" Source="logo.png"/>
+            <Image HorizontalOptions="Center" HeightRequest="150" Source="logo.png"/>
             <Frame BackgroundColor="#FFC975" HasShadow="False">
                 <StackLayout Orientation="Vertical" Spacing="10">
                     <Entry x:Name="Email" Placeholder="Почта"   
                            PlaceholderColor="White" HeightRequest="40"   
-                           Keyboard="Email"  
-                           TextColor="White"/>
+                           Keyboard="Email">
+                        <Entry.TextColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="#000000" Android ="#ffffff"/>
+                        </Entry.TextColor>
+                        <Entry.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="#000000" Android ="#ffffff"/>
+                        </Entry.PlaceholderColor>
+                    </Entry>
                     <Entry x:Name="Password" Placeholder="Пароль"   
                            PlaceholderColor="White" HeightRequest="40"   
-                           IsPassword="True"  
-                           TextColor="White"/>
+                           IsPassword="True">
+                        <Entry.TextColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="#000000" Android ="#ffffff"/>
+                        </Entry.TextColor>
+                        <Entry.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="#000000" Android ="#ffffff"/>
+                        </Entry.PlaceholderColor>
+                    </Entry>
                 </StackLayout>
             </Frame>
-
             <StackLayout Orientation="Vertical" Spacing="10">
                 <Button Text="Войти" TextColor="White"  
                     FontAttributes="Bold" FontSize="16" HorizontalOptions="FillAndExpand"  
@@ -28,6 +40,7 @@
                     FontAttributes="Bold" FontSize="16" HorizontalOptions="FillAndExpand"  
                     BackgroundColor="#F87516" Clicked="Button_Clicked2Async" />
             </StackLayout>
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>  

@@ -40,8 +40,10 @@ namespace MobileApp
             listView.ItemTapped += async (object sender, ItemTappedEventArgs e) =>
             {
                 if (e == null) return;
-                    await Navigation.PushAsync(new TaskMainTabbed(listView.SelectedItem as Models.Task));// de-select the row
+                UserDialogs.Instance.ShowLoading("Загрузка...");
+                await Navigation.PushAsync(new TaskMainTabbed(listView.SelectedItem as Models.Task));// de-select the row
                 ((ListView)sender).SelectedItem = null;
+                UserDialogs.Instance.HideLoading();
             };
             RefreshCommand.Execute(null);
         }
