@@ -77,7 +77,7 @@ namespace MobileApp.Views
                               if (file == null)
                                   return;
                               else
-                                  Source.Photos.Add(file.AlbumPath);
+                                  Source.Photos.Add(file.Path);
                           }
                       }
                       else

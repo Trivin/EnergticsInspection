@@ -13,6 +13,7 @@ using MobileApp.Views;
 using System.Windows.Input;
 using System.Threading;
 using MobileApp.Methods;
+using Acr.UserDialogs;
 
 namespace MobileApp
 {
@@ -55,16 +56,10 @@ namespace MobileApp
                     DependencyService.Get<IMessage>().LongAlert("Не выбранные данные для отправки!");
                     return;
                 }
-                string result = "";
-                for (int i = 0; i < GetInfo.tasks.Count; i++)
-                    if (GetInfo.tasks[i].Photos != null)
-                        for (int j = 0; j < GetInfo.tasks[i].Photos.Count; j++)
-                        {
-                            result += GetInfo.tasks[i].Photos[j] + "\n";
-                            FTPClient.UploadFile(GetInfo.tasks[i].Photos[j]);
-                        }
+                UserDialogs.Instance.ShowLoading("Выполняется отправка данных...");
                 await GetInfo.SendInfoAsync();
-                DependencyService.Get<IMessage>().LongAlert(result);
+                UserDialogs.Instance.HideLoading();
+                DependencyService.Get<IMessage>().LongAlert("Удачно отправлено!");
             }
             catch (Exception err)
             {

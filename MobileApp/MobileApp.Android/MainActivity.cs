@@ -9,6 +9,7 @@ using Android.OS;
 using Plugin.CurrentActivity;
 using Xamarin.Forms;
 using MobileApp.Models;
+using Acr.UserDialogs;
 
 namespace MobileApp.Droid
 {
@@ -21,6 +22,7 @@ namespace MobileApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            UserDialogs.Init(this);
             base.OnCreate(bundle);
             Xfx.XfxControls.Init();
             global::Xamarin.Forms.Forms.Init(this, bundle); CrossCurrentActivity.Current.Init(this, bundle);
